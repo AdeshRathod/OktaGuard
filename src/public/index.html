@@ -1,0 +1,81 @@
+<!-- src/public/index.html -->
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>OktaGuard Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        button {
+            padding: 6px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>OktaGuard Alerts</h1>
+    <button onclick="rescan()">Rescan Now</button>
+    <table id="alertsTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>User</th>
+                <th>Risk</ th>
+                <th>Desc</th>
+                <th>Severity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        </ table>
+        <script>
+            async function load() {
+                const r = await fetch('/api/alerts');
+                const alerts = await r.json();
+                const tbody = document.querySelector('#alertsTable tbody');
+                tbody.innerHTML = '';
+                alerts.slice().reverse().forEach(a => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${a.timestamp}</td><td>${a.username || a.user_id}</
+ td><td>${a.risk_type}</td><td>${a.description}</td><td>${a.severity}</td><td>$
+ 13
+{a.action_taken || ('<button onclick="suspend(\''+a.user_id+'\')">Suspend</
+ button>')}</td>`;
+                    tbody.appendChild(tr);
+                });
+            }
+            async function suspend(userId) {
+                if (!confirm('Suspend user ' + userId + '?')) return;
+                await fetch('/api/remediate/' + userId, { method: 'POST' });
+                load();
+            }
+            async function rescan() {
+                await fetch('/api/rescan', { method: 'POST' });
+                setTimeout(load, 2000);
+            }
+            load();
+            setInterval(load, 15000);
+        </script>
+</body>
+
+</html>

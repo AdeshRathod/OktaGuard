@@ -1,0 +1,54 @@
+{
+  "info": {
+    "name": "OktaGuard API",
+    "_postman_id": "b9f13ad6-8d2e-46a6-bf34-4b02e43c4c91",
+    "description": "Collection to test OktaGuard backend service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Alerts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/alerts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "alerts"]
+        }
+      }
+    },
+    {
+      "name": "Manual Suspend User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/remediate/{{userId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "remediate", "{{userId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Trigger Rescan",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/rescan",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "rescan"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
