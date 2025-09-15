@@ -1,7 +1,33 @@
 {
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "alert_1757932126709_198",
+      "user_id": "user123",
+      "username": "user@example.com",
+      "risk_type": "unusual_geography",
+      "description": "Login from new country: US",
+      "timestamp": "2025-09-15T03:00:00.000Z",
+      "severity": "high",
+      "action_taken": null
+    },
+    {
+      "id": "alert_1757932126709_180",
+      "user_id": "user123",
+      "username": "user@example.com",
+      "risk_type": "outside_business_hours",
+      "description": "Login at 8:00 which is outside working hours (9-18)",
+      "timestamp": "2025-09-15T03:00:00.000Z",
+      "severity": "medium",
+      "action_taken": null
+    }
+  ],
   "state": {
-    "lastFetchISO": null,
-    "userCountries": {}
+    "lastFetchISO": "2025-09-15T10:28:46.707Z",
+    "userCountries": {
+      "user123": [
+        "US"
+      ]
+    },
+    "failedAttempts": {}
   }
 }

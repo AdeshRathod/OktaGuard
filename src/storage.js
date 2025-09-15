@@ -1,4 +1,3 @@
-// src/storage.js
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const fs = require('fs');

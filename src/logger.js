@@ -1,4 +1,3 @@
-// src/logger.js
 const { createLogger, transports, format } = require('winston');
 const { LOG_LEVEL } = require('./config');
 

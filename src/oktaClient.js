@@ -1,4 +1,3 @@
-// src/oktaClient.js
 const axios = require('axios');
 const { OKTA_ORG_URL, OKTA_API_TOKEN } = require('./config');
 const logger = require('./logger');

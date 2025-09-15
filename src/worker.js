@@ -1,4 +1,3 @@
-// src/worker.js
 // Wire together fetcher and detector and provide an immediate-run method for the rescan endpoint
 const { fetchLogs } = require("./services/logFetcher");
 const detector = require("./services/detector");
